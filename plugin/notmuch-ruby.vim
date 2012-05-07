@@ -9,7 +9,7 @@ endif
 " Add the gems from the bundle install to the load path
 ruby << EOF
 Dir[Vim.evaluate('expand("<sfile>:p:h:h")') + '/**/gems/*/lib'].each do |gem|
-  $:.unshift gem.strip
+	$:.unshift gem.strip
 end
 EOF
 
