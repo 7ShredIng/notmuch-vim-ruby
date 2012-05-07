@@ -6,6 +6,11 @@ if !has("ruby") || version < 700
 	finish
 endif
 
+" Add the gems from the bundle install to the load path
+let s:gem_path = globpath(expand("<sfile>:p:h:h"), '**/gems/*/lib')
+ruby VIM.evaluate('s:gem_path').split("\n").each { |gem| $:.unshift gem.strip }
+unlet s:gem_path
+
 let g:loaded_notmuch_rb = "yep"
 
 let g:notmuch_rb_folders_maps = {
