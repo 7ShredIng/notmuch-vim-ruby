@@ -67,20 +67,6 @@ You should now be able to run
 
 cleanly. If you don't see any errors, it means it's working :)
 
-#### Mail Gem
-
-Since libnotmuch library concentrates on things other than handling mail, we
-need a library to do that, and for Ruby the best library for that is called
-'mail'. The easiest way to install it is with ruby's gem. In most distro's the
-package is called 'rubygems'.
-
-Once you have gem, run:
-
-    % gem install mail
-
-In some systems gems are installed on a per-user basis by default, so make sure
-you are running as the same user as the one that installed them.
-
 #### Actual Vim Plugin
 
 You first need to install the original vim plugin, or at least have the syntax
@@ -92,10 +78,18 @@ If you have the notmuch source code available, just go to the 'vim' directory
 and type 'make install' (make sure you create the missing directories if the
 build complains).
 
-Then just copy notmuch-ruby.vim to ~/.vim/plugins/notmuch-ruby.vim.
+Then just copy install notmuch-ruby using pathogen, vundler, or however
+you prefer to install vim plugins.
 
-You can grab it from here:
-https://raw.github.com/felipec/notmuch-vim-ruby/master/notmuch-ruby.vim
+#### Mail Gem
+
+Since libnotmuch library concentrates on things other than handling mail, we
+need a library to do that, and for Ruby the best library for that is called
+'mail'. The easiest way to install it is with [bundler](http://www.gembundler.com).
+
+Once you have bundler run the following from where you installed the plugin:
+
+    % bundle install --path vendor/
 
 That's it just, fire it up!
 
