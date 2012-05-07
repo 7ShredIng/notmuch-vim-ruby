@@ -348,7 +348,6 @@ function! s:NotMuchR()
 
 ruby << EOF
 	require 'notmuch'
-	require 'rubygems'
 	require 'mail'
 	require 'tempfile'
 
