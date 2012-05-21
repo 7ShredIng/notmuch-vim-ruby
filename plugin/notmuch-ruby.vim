@@ -69,7 +69,7 @@ function! s:new_file_buffer(type, fname)
 endfunction
 
 function! s:compose_unload()
-	if s:compose_done
+	if b:compose_done
 		return
 	endif
 	let text = input('[s]end/[q]uit? ')
@@ -81,12 +81,12 @@ endfunction
 "" actions
 
 function! s:compose_quit()
-	let s:compose_done = 1
+	let b:compose_done = 1
 	call s:kill_this_buffer()
 endfunction
 
 function! s:compose_send()
-	let s:compose_done = 1
+	let b:compose_done = 1
 	let fname = expand('%')
 
 	" remove headers
@@ -111,7 +111,7 @@ function! s:compose_send()
 endfunction
 
 function! s:show_reply()
-	let s:compose_done = 0
+	let b:compose_done = 0
 ruby << EOF
 	open_reply(get_message.mail)
 EOF
