@@ -336,10 +336,15 @@ function! s:set_defaults()
 	endif
 endfunction
 
+let s:notmuch_script_path = expand("<sfile>:p:h:h")
+
 function! s:NotMuchR()
 	call s:set_defaults()
 
 ruby << EOF
+	Dir[Vim.evaluate('s:notmuch_script_path') + '/**/gems/*/lib'].each do |gem|
+		$:.unshift gem.strip
+	end
 	require 'notmuch'
 	require 'mail'
 	require 'tempfile'
