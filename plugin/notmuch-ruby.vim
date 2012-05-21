@@ -6,13 +6,6 @@ if !has("ruby") || version < 700
 	finish
 endif
 
-" Add the gems from the bundle install to the load path
-ruby << EOF
-Dir[Vim.evaluate('expand("<sfile>:p:h:h")') + '/**/gems/*/lib'].each do |gem|
-	$:.unshift gem.strip
-end
-EOF
-
 let g:loaded_notmuch_rb = "yep"
 
 let g:notmuch_rb_folders_maps = {
@@ -214,7 +207,7 @@ EOF
 endfunction
 
 function! s:set_map(maps)
-	nmapclear
+	nmapclear <buffer>
 	for [key, code] in items(a:maps)
 		let cmd = printf(":call <SID>%s<CR>", code)
 		exec printf('nnoremap <buffer> %s %s', key, cmd)
