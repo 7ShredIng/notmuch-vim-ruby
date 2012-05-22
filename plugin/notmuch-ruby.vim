@@ -344,9 +344,20 @@ ruby << EOF
 	Dir[Vim.evaluate('s:notmuch_script_path') + '/**/gems/*/lib'].each do |gem|
 		$:.unshift gem.strip
 	end
+
 	require 'notmuch'
-	require 'mail'
+
+	begin
+		require 'mail'
+	rescue LoadError
+		# In case the person did not use bundler to setup the mail gem load rubygems
+		# to see if it is in their list of available gems
+		require 'rubygems'
+		require 'mail'
+	end
+
 	require 'tempfile'
+
 
 	$db_name = nil
 	$email_address = nil
